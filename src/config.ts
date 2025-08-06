@@ -10,7 +10,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Aur0r3's Blog", // Site title, displayed in the browser tab
-	subtitle: "^_^",
+	subtitle: "思维编译中，请勿打扰",
 	lang: "en", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th', 'vi'
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -56,7 +56,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Aur0r3",
-	bio: "Take freedom as your direction, embrace the vast world, wander with curiosity.",
+	bio: "在极光下思考，在终端里书写",
 	links: [
 		{
 			name: "Twitter",
