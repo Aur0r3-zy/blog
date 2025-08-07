@@ -18,7 +18,7 @@
 
 主力编辑器是 VSCode
 
-我的博客托管于netlify云服务器，数据库托管于Mongodb，使用 Astro & Fuwari 框架构建，你可以在 https://aur0r3.fun 访问它。
+我的博客托管于Netlify云服务器，数据库托管于Mongodb，使用 Astro & Fuwari 框架构建，你可以在 https://aur0r3.fun 访问它。
 
 ### 📘 **学习**
 
