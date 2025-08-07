@@ -60,7 +60,7 @@ docker 环境准备好之后，在靶机的浏览器测试ollama是否开启：
 
 克隆利用代码：git clone <https://github.com/Bi0x/CVE-2024-37032.git>
 
-修改poc.py和server.py中的host变量和target\_url变量为目标IP
+修改poc.py和server.py中的host变量和target_url变量为目标IP
 
 运行server.py：python server.py
 
@@ -84,7 +84,7 @@ sudo git clone <https://github.com/Bi0x/CVE-2024-37032.git>
 
 ![图片 5](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20250807233403540.png)
 
-进入rogue\_registry\_server目录
+进入rogue_registry_server目录
 
 修改server.py
 
@@ -568,7 +568,7 @@ Content-Type: application/json
 
 #### 性能优化建议
 
-**量化模型**：选择带量化后缀的模型（如 llama3:8b-q4\_K\_M）
+**量化模型**：选择带量化后缀的模型（如 llama3:8b-q4_K_M）
 
 **启动参数**：
 
@@ -600,7 +600,7 @@ docker run -d \
 
 #### 防御措施
 
-1、若Ollama只提供本地服务，设置环境变量Environment="OLLAMA\_HOST=127.0.0.1"，仅允许本地访问。
+1、若Ollama只提供本地服务，设置环境变量Environment="OLLAMA_HOST=127.0.0.1"，仅允许本地访问。
 
 2、若Ollama需提供公网服务，选择以下方法添加认证机制：
 
