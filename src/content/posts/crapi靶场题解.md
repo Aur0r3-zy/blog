@@ -4,7 +4,7 @@ published: 2025-07-03
 description: '本文内容为crapi靶场的部分题解，重点记录了接口测试方法，nosql注入以及jwt攻击的常见手段'
 image: ''
 tags: [接口安全]
-category: 'web安全'
+category: '总结'
 draft: false 
 lang: ''
 ---

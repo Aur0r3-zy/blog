@@ -4,7 +4,7 @@ published: 2025-08-07
 description: '本文针对Ollama组件的两个漏洞进行了复现，漏洞编号分别为CVE-2024-37032和CNVD-2025-04094'
 image: ''
 tags: [Ollama组件漏洞,CVE,CNVD]
-category: 'AI安全'
+category: '技术'
 draft: false 
 lang: ''
 ---

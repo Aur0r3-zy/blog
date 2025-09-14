@@ -3,8 +3,8 @@ title: 论文阅读：Reinforced-Cross-Domain-Knowledge-Distillation-on-Time-Ser
 published: 2025-07-03
 description: '本文介绍了某顶会论文中的强化跨域知识蒸馏（RCD-KD）框架，该框架结合强化学习和对抗性训练，解决时间序列数据中的无监督域适应问题，同时降低模型复杂度以便在资源受限设备上部署。通过动态选择目标样本和域不变特征学习，RCD-KD在多个公共数据集上表现出优越性能，显著提升模型的泛化能力和鲁棒性，同时减少计算资源需求'
 image: ''
-tags: [跨域数据集]
-category: '知识蒸馏'
+tags: [知识蒸馏,跨域数据集]
+category: '总结'
 draft: false 
 lang: ''
 ---

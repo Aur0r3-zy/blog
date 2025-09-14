@@ -4,7 +4,7 @@ published: 2025-08-03
 description: '本文内容为Upload-Lab靶场的部分题解，重点记录了文件上传攻击的常见手段'
 image: ''
 tags: [文件上传攻击]
-category: 'web安全'
+category: '总结'
 draft: false 
 lang: ''
 ---

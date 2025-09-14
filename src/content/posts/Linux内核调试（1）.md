@@ -4,7 +4,7 @@ published: 2025-03-20
 description: '本文介绍了Linux内核调试的基本流程，包括源码获取、内核编译、文件系统镜像加载、QEMU启动以及GDB调试。通过关闭内核地址随机化（KASLR）和开启调试信息，确保内核可调试性。文章详细描述了如何使用syzkaller生成文件系统镜像，并通过QEMU启动虚拟机进行调试。最后，通过GDB远程连接到虚拟机内核，完成断点设置和调试操作'
 image: ''
 tags: [内核调试]
-category: '操作系统'
+category: '技术'
 draft: false 
 lang: ''
 ---

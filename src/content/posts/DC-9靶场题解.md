@@ -4,7 +4,7 @@ published: 2025-07-04
 description: '本文内容为DC-9靶场题解，DC-9 是一个包含真实漏洞场景的靶场，模拟了企业级环境中常见的安全防护机制（如敲门服务）与漏洞，适合用于渗透测试实战演练与提权技巧学习。'
 image: ''
 tags: [渗透测试]
-category: 'web安全'
+category: '总结'
 draft: false 
 lang: ''
 ---

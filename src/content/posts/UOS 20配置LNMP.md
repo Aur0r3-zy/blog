@@ -4,7 +4,7 @@ published: 2025-08-03
 description: '本文介绍了在UOS 20下配置LNMP的基本方法，包括Nginx，Maria数据库，PHP等的安装配置。'
 image: ''
 tags: [UOS]
-category: '环境配置'
+category: '总结'
 draft: false 
 lang: ''
 ---

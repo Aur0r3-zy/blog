@@ -4,7 +4,7 @@ published: 2025-07-14
 description: 'Sqli-Labs 是一个专门用于练习 SQL 注入漏洞的开源靶场项目，由印度安全研究员 Dhurva 开发，本文记录了Sqli-Lab靶场的题目WP。项目地址:https://github.com/Audi-1/sqli-labs'
 image: ''
 tags: [sql注入]
-category: 'web安全'
+category: '总结'
 draft: false 
 lang: ''
 ---
