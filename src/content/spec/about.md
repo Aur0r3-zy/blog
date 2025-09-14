@@ -21,7 +21,7 @@
 我的主力开发环境是 **Win11 + Manjaro 双系统**，偏好极简高效的工作流，同时也喜欢不断“折腾”，探索新的工具与技术。
 主力编辑器：**VSCode**。
 
-我的博客采用 **Astro & Fuwari** 框架构建，托管在 **Netlify**，数据库使用 **MongoDB**，欢迎访问 👉 [https://aur0r3.fun](https://aur0r3.fun)。
+我的博客采用 **Astro & Fuwari** 框架构建，托管在 **Netlify**，数据库使用 **MongoDB**，欢迎访问 👉 [https://aur0r3.fun](https://aur0r3.fun)
 
 ---
 
