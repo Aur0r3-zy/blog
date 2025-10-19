@@ -1,13 +1,3 @@
----
-title: Seed实验-shelcode编写
-published: 2025-10-19
-description: '本文总结了Seed实验中shelcode编写'
-image: ''
-tags: [shellcode]
-category: '技术'
-draft: false 
-lang: ''
----
 # execve()函数的参数含义
 
 其函数原型通常如下：
@@ -24,20 +14,20 @@ int execve(const char *pathname, char *const argv[], char *const envp[]);
 
 **详细解释：**
 
-1.  **路径类型**：
-    
-    *   **绝对路径**：例如 `"/usr/bin/ls"`。内核会直接根据这个路径去寻找文件。
-    *   **相对路径**：例如 `"./my_program"`。内核会相对于当前进程的工作目录来解析这个路径。
-    
-2.  **文件要求**：
-    
-    该文件必须是一个**真正的可执行文件**。这包括：
-    
-    * 由编译器生成的**二进制可执行文件**
+1. **路径类型**：
 
-    *   以 `#!interpreter [arg]` 开头的**脚本文件**（例如 Shell 脚本、Python 脚本）。在这种情况下，内核会启动 `#!` 后面指定的解释器，并将脚本路径和参数传递给解释器。例如，对于 `#!/bin/bash` 的脚本，实际执行的是 `/bin/bash your_script.sh`。
-    
-    *   当前进程必须对该文件拥有**执行权限**。
+   *   **绝对路径**：例如 `"/usr/bin/ls"`。内核会直接根据这个路径去寻找文件。
+   *   **相对路径**：例如 `"./my_program"`。内核会相对于当前进程的工作目录来解析这个路径。
+
+2. **文件要求**：
+
+   该文件必须是一个**真正的可执行文件**。这包括：
+
+   * 由编译器生成的**二进制可执行文件**
+
+   * 以 `#!interpreter [arg]` 开头的**脚本文件**（例如 Shell 脚本、Python 脚本）。在这种情况下，内核会启动 `#!` 后面指定的解释器，并将脚本路径和参数传递给解释器。例如，对于 `#!/bin/bash` 的脚本，实际执行的是 `/bin/bash your_script.sh`。
+
+   * 当前进程必须对该文件拥有**执行权限**。
 
 ### 参数二：`char *const argv[]`
 
@@ -47,23 +37,26 @@ int execve(const char *pathname, char *const argv[], char *const envp[]);
 
 **详细解释：**
 
-1.  **格式约定**：
-    *   `argv[0]`：按照约定，这通常是**所执行程序的名称**。它不一定必须与 `pathname` 完全一样，但通常是程序名（如 `"ls"`, `"grep"`）。很多程序的行为会依赖于 `argv[0]`，例如 `busybox` 通过检查 `argv[0]` 来决定以什么功能启动。
-    *   `argv[1]`, `argv[2]`, ...：这些是传递给程序的真正参数。
-    *   数组的最后一个元素**必须**是 `NULL` 指针。这对于内核和新程序知道参数列表在哪里结束至关重要。
+1. **格式约定**：
 
-3.  **示例**：
-    如果你想执行 `ls -l /home`，需要构建这样的数组：
-    ```c
-    char *argv[] = {
-        "ls",    // argv[0]
-        "-l",    // argv[1]
-        "/home", // argv[2]
-        NULL     // 结束标记
-    };
-    execve("/usr/bin/ls", argv, environ);
-    ```
-    在新程序（`/usr/bin/ls`）的 `main` 函数中，`argc` 将是 3，`argv[0]` 是 `"ls"`，`argv[1]` 是 `"-l"`，`argv[2]` 是 `"/home"`。
+   *   `argv[0]`：按照约定，这通常是**所执行程序的名称**。它不一定必须与 `pathname` 完全一样，但通常是程序名（如 `"ls"`, `"grep"`）。很多程序的行为会依赖于 `argv[0]`，例如 `busybox` 通过检查 `argv[0]` 来决定以什么功能启动。
+   *   `argv[1]`, `argv[2]`, ...：这些是传递给程序的真正参数。
+   *   数组的最后一个元素**必须**是 `NULL` 指针。这对于内核和新程序知道参数列表在哪里结束至关重要。
+
+2. **示例**：
+   如果你想执行 `ls -l /home`，需要构建这样的数组：
+
+   ```c
+   char *argv[] = {
+       "ls",    // argv[0]
+       "-l",    // argv[1]
+       "/home", // argv[2]
+       NULL     // 结束标记
+   };
+   execve("/usr/bin/ls", argv, environ);
+   ```
+
+   在新程序（`/usr/bin/ls`）的 `main` 函数中，`argc` 将是 3，`argv[0]` 是 `"ls"`，`argv[1]` 是 `"-l"`，`argv[2]` 是 `"/home"`。
 
 ### 参数三：`char *const envp[]`
 
@@ -104,11 +97,11 @@ nasm -f elf32 mysh.s -o mysh.o
 ld -m elf_i386 mysh.o -o mysh
 ```
 
-![image-20251014152322610](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014152322610.png)
+![image-20251014152322610](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507507.png)
 
 运行mysh，并查看正在执行的进程的pid
 
-![image-20251014152727147](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014152727147.png)
+![image-20251014152727147](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507509.png)
 
 发现正在运行的进程`pid`改变，证明这次执行产生了一个新的进程
 
@@ -118,13 +111,13 @@ ld -m elf_i386 mysh.o -o mysh
 objdump -Mintel --disassemble mysh.o
 ```
 
-![image-20251014153026213](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014153026213.png)
+![image-20251014153026213](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507510.png)
 
 **xxd** 是一个十六进制转储工具，可用于查看和修改二进制文件或数据的十六进制表示，-c 控制每行显示的字节数；-p 参数用于以纯粹的十六进制格式输出数据，而不包含行号、偏移量和ASCII 字符。使用` xxd `命令打印出二进制文件的内容，可以找到shellcode
 
 `x80` 为机器代码的结束标识
 
-![image-20251014153156626](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014153156626.png)
+![image-20251014153156626](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507511.png)
 
 使用`convert.py`转换成`shellcode`
 
@@ -150,7 +143,7 @@ s += '"\n' + ").encode('latin-1')"
 print(s)
 ```
 
-![image-20251014154547724](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014154547724.png)
+![image-20251014154547724](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507512.png)
 
 # Task 1.b
 
@@ -186,11 +179,11 @@ section .text
 
 **解决方法：将ebx向左移24位，“###”被丢弃，再向右移24位，变为“h000”，凑够了位数，又在不引入0的情况下使用0作为字符串结束符。**
 
-![image-20251014154354479](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014154354479.png)
+![image-20251014154354479](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507513.png)
 
 可以看到没有`0`
 
-![image-20251014154824304](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014154824304.png)
+![image-20251014154824304](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507514.png)
 
 # Task 1.c
 
@@ -239,11 +232,11 @@ section .text
       int 0x80
 ```
 
-![image-20251014160051243](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014160051243.png)
+![image-20251014160051243](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507515.png)
 
 机器码中没有0
 
-![image-20251014160132270](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014160132270.png)
+![image-20251014160132270](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507516.png)
 
 # Task 1.d
 
@@ -303,11 +296,11 @@ section .text
 
 ```
 
-![image-20251014161710104](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014161710104.png)
+![image-20251014161710104](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507517.png)
 
 查看机器码，没有0
 
-![image-20251014161853938](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014161853938.png)
+![image-20251014161853938](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507518.png)
 
 # Task 2
 
@@ -393,7 +386,7 @@ two:
 
 ```
 
-![image-20251014163718277](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014163718277.png)
+![image-20251014163718277](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507519.png)
 
 # Task 3
 
@@ -424,4 +417,4 @@ _start:
 
 运行结果：
 
-![image-20251014164701307](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251014164701307.png)
+![image-20251014164701307](https://raw.githubusercontent.com/Aur0r3-zy/picture/main/img/20251019210507520.png)
